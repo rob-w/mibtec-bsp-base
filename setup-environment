@@ -1,0 +1,94 @@
+#!/bin/sh
+#
+
+if [ "$(whoami)" = "root" ]; then
+    echo "ERROR: do not use the BSP as root. Exiting..."
+fi
+
+if [ -z "$MACHINE" ]; then
+    MACHINE='igep0020'
+fi
+
+if [ -z "$SDKMACHINE" ]; then
+    SDKMACHINE='i686'
+fi
+
+if [ -z "$DISTRO" ]; then
+    DISTRO='poky'
+fi
+
+OEROOT=sources/poky
+if [ -e sources/oe-core ]; then
+    OEROOT=sources/oe-core
+fi
+
+CWD=`pwd`
+
+cd $OEROOT
+
+. ./oe-init-build-env $CWD/$1 > /dev/null
+
+# Clean up PATH, because if it includes tokens to current directories somehow,
+# wrong binaries can be used instead of the expected ones during task execution
+export PATH="`echo $PATH | sed 's/\(:.\|:\)*:/:/g;s/^.\?://;s/:.\?$//'`"
+
+generated_config=
+if [ ! -e conf/local.conf.sample ]; then
+    mv conf/local.conf conf/local.conf.sample
+
+    # Generate the local.conf based on the Yocto defaults
+    TEMPLATES=$CWD/sources/base/conf
+    NCPU=`grep -c processor /proc/cpuinfo`
+    grep -v '^#\|^$' conf/local.conf.sample > conf/local.conf
+    cat >> conf/local.conf <<EOF
+
+BB_NUMBER_THREADS = '$NCPU'
+PARALLEL_MAKE = '-j $NCPU'
+BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/|.*/meta-angstrom/recipes-core/leds/led-config|.*/meta-ti/recipes-core/netbase/|.*/meta-angstrom/recipes-core/systemd/timestamp-service.bb"
+EOF
+    # Change settings according environment
+    sed -e "s,MACHINE ??=.*,MACHINE ??= '$MACHINE',g" \
+        -e "s,SDKMACHINE ??=.*,SDKMACHINE ??= '$SDKMACHINE',g" \
+        -e "s,DISTRO ?=.*,DISTRO ?= '$DISTRO',g" \
+        -i conf/local.conf
+
+    cp $TEMPLATES/* conf/
+
+    generated_config=1
+fi
+
+cat <<EOF
+
+Welcome to MIBTEC BSP
+
+The Yocto Project has extensive documentation about OE including a
+reference manual which can be found at:
+    http://yoctoproject.org/documentation
+
+For more information about OpenEmbedded see their website:
+    http://www.openembedded.org/
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    meta-toolchain
+    meta-toolchain-sdk
+    adt-installer
+    meta-ide-support
+
+EOF
+
+if [ -n "$generated_config" ]; then
+    cat <<EOF
+Your build environemnt has been configured with:
+
+    MACHINE=$MACHINE
+    SDKMACHINE=$SDKMACHINE
+    DISTRO=$DISTRO
+EOF
+else
+    echo "Your configuration files at $1 has not been touched."
+fi
+
+
