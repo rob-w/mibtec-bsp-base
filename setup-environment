@@ -6,7 +6,7 @@ if [ "$(whoami)" = "root" ]; then
 fi
 
 if [ -z "$MACHINE" ]; then
-    MACHINE='igep0020'
+    MACHINE='igep00x0'
 fi
 
 if [ -z "$SDKMACHINE" ]; then
