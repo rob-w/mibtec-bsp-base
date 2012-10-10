@@ -70,6 +70,9 @@ For more information about OpenEmbedded see their website:
 
 You can now run 'bitbake <target>'
 
+Mibtec targets are:
+    demo-image
+
 Common targets are:
     core-image-minimal
     meta-toolchain
