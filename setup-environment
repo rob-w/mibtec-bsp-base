@@ -46,6 +46,8 @@ BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
 BBMASK ?= ".*/meta-ti/recipes-misc/images/cloud9*|.*/meta-ti/recipes-misc/images/ti-hw*"
+INHERIT = "rm_work"
+
 EOF
     # Change settings according environment
     sed -e "s,MACHINE ??=.*,MACHINE ??= '$MACHINE',g" \
