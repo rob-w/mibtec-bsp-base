@@ -45,7 +45,7 @@ if [ ! -e conf/local.conf.sample ]; then
 BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
-BBMASK ?= ".*/meta-ti/recipes-misc/images/cloud9*|.*/meta-ti/recipes-misc/images/ti-hw*"
+BBMASK ?= ".*/meta-ti/recipes-misc/images/cloud9*|.*/meta-ti/recipes-misc/images/ti-hw*|.*/meta-openembedded/meta-oe/recipes-core/systemd/*|.*/meta-openembedded/meta-oe/recipes-core/busybox/busybox*|.*/meta-openembedded/meta-oe/recipes-extended/polkit/polkit"
 INHERIT = "rm_work"
 
 EOF
