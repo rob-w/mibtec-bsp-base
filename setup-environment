@@ -6,7 +6,7 @@ if [ "$(whoami)" = "root" ]; then
 fi
 
 if [ -z "$MACHINE" ]; then
-    MACHINE='beaglebone'
+    MACHINE='am437x-evm'
 fi
 
 if [ -z "$SDKMACHINE" ]; then
