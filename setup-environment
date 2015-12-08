@@ -79,7 +79,7 @@ For more information about OpenEmbedded see their website:
 You can now run 'bitbake <target>'
 
 Mibtec targets are for example:
-    demo-sysvinit-image
+    demo-image
 
 Common targets are:
     core-image-minimal
