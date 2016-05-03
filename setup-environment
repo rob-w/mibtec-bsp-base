@@ -51,7 +51,7 @@ BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
 
-POKY_DEFAULT_DISTRO_FEATURES_remove = "opengl"
+BBMASK ?= ".*/poky/meta/recipes-graphics/mesa/*"
 
 PREFERRED_PROVIDER_libqwt-dev = "libqwt"
 PREFERRED_PROVIDER_qwt = "libqwt"
@@ -61,8 +61,9 @@ PREFERRED_PROVIDER_virtual/libgles1 = "omap5-sgx-ddk-um-linux"
 PREFERRED_PROVIDER_virtual/libgles2 = "omap5-sgx-ddk-um-linux"
 PREFERRED_PROVIDER_virtual/libgbm = "libgbm"
 PREFERRED_PROVIDER_virtual/libgbm-dev = "libgbm-dev"
-PREFERRED_PROVIDER_virtual/mesa = "libgbm"
-PREFERRED_PROVIDER_virtual/mesa-dev = "libgbm-dev"
+PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
+PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
+
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
