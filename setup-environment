@@ -17,14 +17,9 @@ if [ -z "$DISTRO" ]; then
     DISTRO='poky'
 fi
 
-OEROOT=sources/poky
-if [ -e sources/oe-core ]; then
-    OEROOT=sources/oe-core
-fi
-
 CWD=`pwd`
 
-cd $OEROOT
+cd sources/poky
 
 . ./oe-init-build-env $CWD/$1 > /dev/null
 
