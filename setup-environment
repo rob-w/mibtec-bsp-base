@@ -46,26 +46,21 @@ BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
 
-BBMASK ?= ".*/poky/meta/recipes-graphics/mesa/*"
+BBMASK ?= ".*sources/meta-mibtec/recipes-graphics/gbm/*"
 
 PREFERRED_PROVIDER_libqwt-dev = "libqwt"
 PREFERRED_PROVIDER_qwt = "libqwt"
 
-PREFERRED_PROVIDER_virtual/egl = "omap5-sgx-ddk-um-linux"
-PREFERRED_PROVIDER_virtual/libgles1 = "omap5-sgx-ddk-um-linux"
-PREFERRED_PROVIDER_virtual/libgles2 = "omap5-sgx-ddk-um-linux"
-PREFERRED_PROVIDER_virtual/libgbm = "libgbm"
-PREFERRED_PROVIDER_virtual/libgbm-dev = "libgbm-dev"
-PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
 PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
-
+PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
+PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
+PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
+PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
+PREFERRED_PROVIDER_libgbm = "libgbm"
+PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
-
-BB_NUMBER_THREADS = '24'
-PARALLEL_MAKE = '-j 24'
-PACKAGE_CLASSES = "package_ipk"
 
 INHERIT = "rm_work"
 #INHERIT += "archiver"
