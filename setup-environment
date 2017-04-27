@@ -46,8 +46,6 @@ BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
 
-BBMASK ?= ".*sources/meta-mibtec/recipes-graphics/gbm/*"
-
 PREFERRED_PROVIDER_libqwt-dev = "libqwt"
 PREFERRED_PROVIDER_qwt = "libqwt"
 
