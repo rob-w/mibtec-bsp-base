@@ -65,6 +65,9 @@ INHERIT = "rm_work"
 #ARCHIVER_MODE[src] = "original"
 
 #LICENSE_FLAGS_WHITELIST = "commercial"
+IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
+        grep -vF md5sum.txt | xargs  md5sum > md5sum-full.txt && \
+        awk -F "${WORKDIR}/rootfs/" '{print $1 $2}' md5sum-full.txt > ${IMAGE_ROOTFS}/md5sum.txt && tar"
 
 EOF
     # Change settings according environment
