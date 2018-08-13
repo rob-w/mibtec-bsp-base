@@ -30,10 +30,6 @@ export PATH="`echo $PATH | sed 's/\(:.\|:\)*:/:/g;s/^.\?://;s/:.\?$//'`"
 generated_config=
 if [ ! -e conf/local.conf.sample ]; then
 
-    # sorry hack
-    # initially get rid of systemd bbclass to be ready for sysvinit images
-    rm ../sources/meta-openembedded/meta-oe/classes/systemd.bbclass
-
     mv conf/local.conf conf/local.conf.sample
 
     # Generate the local.conf based on the Yocto defaults
