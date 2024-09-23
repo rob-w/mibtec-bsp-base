@@ -45,6 +45,10 @@ PACKAGE_CLASSES = "package_ipk"
 PREFERRED_PROVIDER_libqwt-dev = "libqwt"
 PREFERRED_PROVIDER_qwt = "libqwt"
 
+IMAGE_FSTYPES = "tar.gz wic.bmap wic.xz"
+IMAGE_FSTYPES:remove = "ubifs ubi wic tar.xz"
+WKS_FILE = "sdcard-a-b.wks"
+
 #PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
 #PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
 #PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
