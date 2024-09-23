@@ -45,13 +45,13 @@ PACKAGE_CLASSES = "package_ipk"
 PREFERRED_PROVIDER_libqwt-dev = "libqwt"
 PREFERRED_PROVIDER_qwt = "libqwt"
 
-PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
-PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
-PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
-PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
-PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
-PREFERRED_PROVIDER_libgbm = "libgbm"
-PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
+#PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
+#PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
+#PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
+#PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
+#PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
+#PREFERRED_PROVIDER_libgbm = "libgbm"
+#PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
@@ -65,7 +65,6 @@ INHERIT = "rm_work"
 IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
         grep -vF md5sum.txt | xargs -d '\n' md5sum > md5sum-full.txt && \
         awk -F "${WORKDIR}/rootfs/" '{print $1 $2}' md5sum-full.txt > ${IMAGE_ROOTFS}/md5sum.txt && tar"
-
 
 EOF
     # Change settings according environment
