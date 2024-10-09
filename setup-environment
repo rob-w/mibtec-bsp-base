@@ -49,22 +49,16 @@ IMAGE_FSTYPES = "tar.gz wic.bmap wic.xz"
 IMAGE_FSTYPES:remove = "ubifs ubi wic tar.xz"
 WKS_FILE = "sdcard-a-b.wks"
 
-#PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
-#PREFERRED_PROVIDER_virtual/mesa = "mesa-gl"
-#PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
-#PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
-#PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
-#PREFERRED_PROVIDER_libgbm = "libgbm"
-#PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
-
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
+
+REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
+KERNEL_DTBVENDORED = "0"
 
 INHERIT = "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
 
-#LICENSE_FLAGS_WHITELIST = "commercial"
 
 IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
         grep -vF md5sum.txt | xargs -d '\n' md5sum > md5sum-full.txt && \
