@@ -42,17 +42,14 @@ BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
 
-PREFERRED_PROVIDER_libqwt-dev = "libqwt"
-PREFERRED_PROVIDER_qwt = "libqwt"
-
 IMAGE_FSTYPES = "tar.gz wic.bmap wic.xz"
 IMAGE_FSTYPES:remove = "ubifs ubi wic tar.xz"
 WKS_FILE = "sdcard-a-b.wks"
 
-PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
-PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-ti-staging-rt"
 
 REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
+FILESPATH:prepend = "${DL_DIR}:"
 
 INHERIT = "rm_work"
 #INHERIT += "archiver"
