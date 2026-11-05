@@ -64,7 +64,7 @@ CYCLONEDX_ADD_COMPONENT_LICENSES = "0"
 CYCLONEDX_IMAGE_TYPE = "firmware"
 CYCLONEDX_EXTEND_COMPONENTS = "1"
 
-INHERIT = "rm_work"
+INHERIT += "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
 
