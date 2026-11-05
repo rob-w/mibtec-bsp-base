@@ -36,7 +36,7 @@ if [ ! -e conf/local.conf.sample ]; then
     TEMPLATES=$CWD/sources/base/conf
     NCPU=`grep -c processor /proc/cpuinfo`
     grep -v '^#\|^$' conf/local.conf.sample > conf/local.conf
-    cat >> conf/local.conf <<EOF
+    cat >> conf/local.conf <<'EOF'
 
 #MACHINE ??= 'raspberrypi-cm5-io-board'
 
@@ -56,6 +56,14 @@ REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
 FILESPATH:prepend = "${DL_DIR}:"
 
 INHERIT += "cyclonedx-export"
+CYCLONEDX_SPEC_VERSION = "1.7"
+CYCLONEDX_RUNTIME_PACKAGES_ONLY = "1"
+CYCLONEDX_ADD_COMPONENT_SCOPES = "0"
+CYCLONEDX_ADD_VULN_TIMESTAMPS = "0"
+CYCLONEDX_ADD_COMPONENT_LICENSES = "0"
+CYCLONEDX_IMAGE_TYPE = "firmware"
+CYCLONEDX_EXTEND_COMPONENTS = "1"
+
 INHERIT = "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
@@ -76,7 +84,7 @@ EOF
     generated_config=1
 fi
 
-cat <<EOF
+cat <<'EOF'
 
 Welcome to MIBTEC BSP
 
