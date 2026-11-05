@@ -14,7 +14,7 @@ if [ -z "$SDKMACHINE" ]; then
 fi
 
 if [ -z "$DISTRO" ]; then
-    DISTRO='poky'
+    DISTRO='miblnx'
 fi
 
 CWD=`pwd`
@@ -38,6 +38,8 @@ if [ ! -e conf/local.conf.sample ]; then
     grep -v '^#\|^$' conf/local.conf.sample > conf/local.conf
     cat >> conf/local.conf <<EOF
 
+#MACHINE ??= 'raspberrypi-cm5-io-board'
+
 BB_NUMBER_THREADS = '$NCPU'
 PARALLEL_MAKE = '-j $NCPU'
 PACKAGE_CLASSES = "package_ipk"
@@ -46,14 +48,20 @@ IMAGE_FSTYPES = "tar.gz wic.bmap wic.xz"
 IMAGE_FSTYPES:remove = "ubifs ubi wic tar.xz"
 WKS_FILE = "sdcard-a-b.wks"
 
+#OPTEEMACHINE = "ti"
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-ti-staging-rt"
+PREFERRED_PROVIDER_virtual/gpudriver = "ti-sgx-ddk-km"
 
 REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
 FILESPATH:prepend = "${DL_DIR}:"
 
+INHERIT += "cyclonedx-export"
 INHERIT = "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
+
+#BBMASK:append = "|meta-mis"
+#BBMASK := "${@'|'.join(filter(None, BBMASK.split('|')))}"
 
 
 IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
