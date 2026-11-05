@@ -60,10 +60,6 @@ INHERIT = "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
 
-#BBMASK:append = "|meta-mis"
-#BBMASK := "${@'|'.join(filter(None, BBMASK.split('|')))}"
-
-
 IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
         grep -vF md5sum.txt | xargs -d '\n' md5sum > md5sum-full.txt && \
         awk -F "${WORKDIR}/rootfs/" '{print $1 $2}' md5sum-full.txt > ${IMAGE_ROOTFS}/md5sum.txt && tar"
