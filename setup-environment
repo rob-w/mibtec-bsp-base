@@ -36,7 +36,7 @@ if [ ! -e conf/local.conf.sample ]; then
     TEMPLATES=$CWD/sources/base/conf
     NCPU=`grep -c processor /proc/cpuinfo`
     grep -v '^#\|^$' conf/local.conf.sample > conf/local.conf
-    cat >> conf/local.conf <<'EOF'
+    cat >> conf/local.conf <<EOF
 
 #MACHINE ??= 'raspberrypi-cm5-io-board'
 
@@ -68,9 +68,9 @@ INHERIT += "rm_work"
 #INHERIT += "archiver"
 #ARCHIVER_MODE[src] = "original"
 
-IMAGE_CMD_TAR = "find ${IMAGE_ROOTFS} -type f |\
+IMAGE_CMD_TAR = "find \${IMAGE_ROOTFS} -type f |\
         grep -vF md5sum.txt | xargs -d '\n' md5sum > md5sum-full.txt && \
-        awk -F "${WORKDIR}/rootfs/" '{print $1 $2}' md5sum-full.txt > ${IMAGE_ROOTFS}/md5sum.txt && tar"
+        awk -F "\${WORKDIR}/rootfs/" '{print \$1 \$2}' md5sum-full.txt > \${IMAGE_ROOTFS}/md5sum.txt && tar"
 
 EOF
     # Change settings according environment
@@ -84,7 +84,7 @@ EOF
     generated_config=1
 fi
 
-cat <<'EOF'
+cat <<EOF
 
 Welcome to MIBTEC BSP
 
