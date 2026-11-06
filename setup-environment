@@ -34,7 +34,7 @@ if [ ! -e conf/local.conf.sample ]; then
 
     # Generate the local.conf based on the Yocto defaults
     TEMPLATES=$CWD/sources/base/conf
-    NCPU=`grep -c processor /proc/cpuinfo`
+    NCPU=$(( $(grep -c processor /proc/cpuinfo) / 2 + 1 ))
     grep -v '^#\|^$' conf/local.conf.sample > conf/local.conf
     cat >> conf/local.conf <<EOF
 
