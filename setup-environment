@@ -53,7 +53,7 @@ PREFERRED_PROVIDER_virtual/kernel ?= "linux-ti-staging-rt"
 PREFERRED_PROVIDER_virtual/gpudriver = "ti-sgx-ddk-km"
 
 REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
-FILESPATH:prepend = "${DL_DIR}:"
+FILESPATH:prepend = "\${DL_DIR}:"
 
 INHERIT += "cyclonedx-export"
 CYCLONEDX_SPEC_VERSION = "1.7"
